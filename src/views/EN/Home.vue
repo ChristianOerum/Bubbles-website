@@ -1,12 +1,14 @@
 <template>
 
-    <div class="w-full h-[100vh] relative flex justify-center">
+    <div>
+
+        <div class="w-full h-[100vh] relative flex justify-center">
         
         <div id="hero_sidemask" class="absolute bg-[#E7F2FF] left-0 top-0 w-[calc((100%/2)-1500px/2)] h-[200vh]"></div>
 
-        <img id="hero" class="desktop:max-w-[1500px] w-full h-auto absolute" :src="require('@/assets/svg/hero.svg')" alt="Hero illustration" />  
+        <img id="hero" class="desktop:max-w-[1500px] w-full h-auto absolute z-10" :src="require('@/assets/svg/hero.svg')" alt="Hero illustration" />  
 
-            <div class="desktop:max-w-[1500px] w-full desktop:pt-[15em] laptop:pt-[17%] flex flex-col items-center relative">
+            <div class="desktop:max-w-[1500px] w-full desktop:pt-[15em] laptop:pt-[17%] flex flex-col items-center relative z-20">
 
                 <h1 class="font-bold text-7xl text-main relative text-center">Focus on learning, <br> forget the noise.</h1>
 
@@ -47,6 +49,8 @@
 
     </div>
 
+    </div>
+
 
 
 </template>
@@ -71,7 +75,18 @@ export default {
 
             document.getElementById('hero').style.opacity = 1.0 - scrollVal
             document.getElementById('hero_sidemask').style.opacity = 1.0 - scrollVal
-            
+
+            let nav = document.getElementById('NAV')
+
+            if (scrollVal != 0) {
+                nav.style.transition = 'top 0.5s ease';
+                nav.style.top = "-50px"
+            }
+            else {
+                nav.style.transition = 'top 0.5s ease';
+                nav.style.top = "" 
+            }
+
         }
     },
     unmounted(){

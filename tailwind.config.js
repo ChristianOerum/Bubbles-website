@@ -2,6 +2,15 @@
 module.exports = {
   content: ['./public/**/*.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
+    zIndex: {
+      'auto': 'auto',
+      '0': 0,
+      '10': 10,
+      '20': 20,
+      '30': 30,
+      '40': 40,
+      '50': 50,
+    },
     screens: {
       'tablet': '640px',
       // => @media (min-width: 640px) { ... }

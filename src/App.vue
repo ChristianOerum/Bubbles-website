@@ -1,11 +1,12 @@
 <template>
-  
+
   <router-view v-slot="{ Component }">
-    <component :is="Component" />
-
-    <NAV :name="this.$router.currentRoute._value.path"></NAV>
-
+    <transition name="fade" mode="out-in">
+      <component :is="Component" />
+    </transition>
   </router-view>
+
+  <NAV :name="this.$store.state.lang"></NAV>
   
 </template>
 
@@ -28,10 +29,12 @@ export default defineComponent({
   },
 
   methods: {},
-  mounted(){
-    
+  beforeCreate(){
+    this.$store.state.lang = "da"
+
     //get country code and redirect to relevant subsite
     if (sessionStorage.getItem("BrowserCountry") == null){
+      
       try {
 
         console.log("Ran country scan")
@@ -50,9 +53,8 @@ export default defineComponent({
             sessionStorage.setItem("BrowserCountry", country);
             
             if (country != "DK") {
-            this.$router.push('/en/home');
-            } else {
-            this.$router.push('/da/home');
+              this.$store.state.lang = "en"
+              this.$router.push('/en/home');
             }
 
         })
